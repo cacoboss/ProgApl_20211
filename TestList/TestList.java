@@ -5,7 +5,7 @@
  */
 package TestList;
 
-import ListBase.Linked_List;
+import ListBase.*;
 import Vectors.*;
 import Lista.Lista;
 
@@ -16,8 +16,8 @@ import Lista.Lista;
 public class TestList {
     public static void main(String[] args){
         
-        Linked_List<Vector2> list = new Linked_List<>();
-        Linked_List<Vector3> list3 = new Linked_List<>();
+        NodeLinked_List<Vector2> list = new NodeLinked_List<>();
+        NodeLinked_List<Vector3> list3 = new NodeLinked_List<>();
         
         list.AddObject(new Vector2(1f,1f));
         list.AddObject(new Vector2(2f,2f));
@@ -26,5 +26,10 @@ public class TestList {
         Lista<Vector3> listaNueva = new Lista<>();
         listaNueva.AgregarElemento(new Vector3(1f,1f));
         listaNueva.AgregarElemento(new Vector3(1f,1f));
+        
+        ArrayLinked_List<Vector2> otraLista = new ArrayLinked_List<>();
+        otraLista.AddObject(new Vector3(1f,1f));
+        otraLista.AddObject(new Vector3(1f,1f));
+        otraLista.AddObject(new Vector3(1f,1f));
     }
 }

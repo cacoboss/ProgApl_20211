@@ -9,12 +9,12 @@ package ListBase;
  *
  * @author ciro_
  */
-public class Linked_List <T> implements I_LinkedList<T> {
+public class NodeLinked_List <T> implements I_LinkedList<T> {
     private int count;          //Cuantos Elementos Tengo
     private List_Node <T> startNode;        //Nodo Inicio
     private List_Node <T> lastNode;
     
-    public Linked_List(){
+    public NodeLinked_List(){
         this.count = 0;
         this.startNode = null;
     }
@@ -32,5 +32,10 @@ public class Linked_List <T> implements I_LinkedList<T> {
             this.lastNode = node;
             count++;
         }
+    }
+    
+    @Override
+    public int GetSize(){
+        return count;
     }
 }
