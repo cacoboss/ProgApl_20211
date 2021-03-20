@@ -23,6 +23,13 @@ public class Vector3 extends Vector2 {
     }
     
     @Override
+    public String ToString(){
+        String s = super.ToString();
+        s = s +  " z: " + this.z;
+        return s;
+    }
+    
+    @Override
     public float Magnitude(){
         double square = Math.pow(x, 2) + Math.pow(y, 2) + Math.pow(z, 2);
         float sqrt = (float)Math.sqrt(square);

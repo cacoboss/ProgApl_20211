@@ -43,4 +43,9 @@ public class ArrayLinked_List <T>
     public int GetSize(){
         return size;
     }
+    
+    @Override
+    public T GetObjectAtIndex(int index){
+        return elements[index];
+    }
 }

@@ -38,4 +38,23 @@ public class NodeLinked_List <T> implements I_LinkedList<T> {
     public int GetSize(){
         return count;
     }
+    
+    @Override
+    public T GetObjectAtIndex(int index){
+        List_Node<T> temp = new List_Node<>(null);
+        
+        try{
+            
+            for(int i = 0 ; i <= index; i++){
+                if(i == 0){
+                    temp = startNode;
+                }else{
+                    temp = temp.GetNextNode();
+                }
+            }
+        }catch(NullPointerException e){
+            System.out.println("Indice fuera de rango");
+        }
+        return temp.GetItem();
+    }
 }

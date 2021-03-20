@@ -12,4 +12,5 @@ package ListBase;
 public interface I_LinkedList <T> {
     void AddObject(T obj);
     int GetSize();
+    T GetObjectAtIndex(int index);
 }

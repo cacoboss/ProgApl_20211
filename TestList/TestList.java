@@ -28,8 +28,11 @@ public class TestList {
         listaNueva.AgregarElemento(new Vector3(1f,1f));
         
         ArrayLinked_List<Vector2> otraLista = new ArrayLinked_List<>();
-        otraLista.AddObject(new Vector3(1f,1f));
-        otraLista.AddObject(new Vector3(1f,1f));
-        otraLista.AddObject(new Vector3(1f,1f));
+        otraLista.AddObject(new Vector3(1f,1f, 0f));
+        otraLista.AddObject(new Vector3(1f,1f, 45f));
+        otraLista.AddObject(new Vector3(1f,1f, 85f));
+        
+        System.out.println(list.GetObjectAtIndex(-1).ToString());
+        System.out.println(otraLista.GetObjectAtIndex(3).ToString());
     }
 }

@@ -25,6 +25,21 @@ public class Vector2 implements Operaciones{
     }
     
     @Override
+    public String ToString(){
+        String s;
+        if(this.x == null && this.y == null)
+             return "Vector Vacio";
+        
+        try{
+            s = "Vector x: " + this.x + "y: " + this.y;
+        }catch(NullPointerException ex){
+           
+        }
+        
+        return s;
+    }
+    
+    @Override
     public float Sumar(){
         return x+y;
     }

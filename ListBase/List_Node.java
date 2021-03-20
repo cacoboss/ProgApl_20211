@@ -30,4 +30,12 @@ public class List_Node <T> {
     public void ChangeNextNode(List_Node next){
         this.nextNode = next;
     }
+    
+    public List_Node<T> GetNextNode(){
+        return nextNode;
+    }
+    
+    public T GetItem(){
+        return container;
+    }
 }
