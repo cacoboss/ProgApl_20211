@@ -19,7 +19,21 @@ public class NodeLinked_List <T> implements I_LinkedList<T> {
         this.startNode = null;
     }
     
-    //Metodos de I_LinkedList
+    
+    // ==================
+    // Metodos de I_LinkedList
+    // ==================
+    
+    @Override
+    public boolean IsEmpty(){
+        return count > 0;
+    }
+    
+    @Override
+    public int GetSize(){
+        return count;
+    }
+        
     @Override
     public void AddObject(T obj){
         if(count == 0){
@@ -35,26 +49,128 @@ public class NodeLinked_List <T> implements I_LinkedList<T> {
     }
     
     @Override
-    public int GetSize(){
-        return count;
-    }
-    
-    @Override
-    public T GetObjectAtIndex(int index){
+    public void AddObject(T obj, int index){
         List_Node<T> temp = new List_Node<>(null);
+        List_Node<T> nodeToAdd = new List_Node<>(obj);
         
-        try{
+        if(index == 0){
+            nodeToAdd.ChangeNextNode(this.startNode);
+            this.startNode = nodeToAdd;
+            count++;
+        }
+        
+        if(index >= count -1){
+            this.lastNode.ChangeNextNode(nodeToAdd);
+            count++;
+        }
+        
+        if(index > 0 ) { 
             
-            for(int i = 0 ; i <= index; i++){
+            for(int i = 0 ; i <= index-1; i++){
                 if(i == 0){
                     temp = startNode;
                 }else{
                     temp = temp.GetNextNode();
                 }
-            }
-        }catch(NullPointerException e){
-            System.out.println("Indice fuera de rango");
+            } 
+            nodeToAdd.ChangeNextNode(temp.GetNextNode());
+            temp.ChangeNextNode(nodeToAdd);
+            count++;
         }
+    }
+    
+    
+    @Override
+    public T GetObjectAtIndex(int index){
+        List_Node<T> temp = new List_Node<>(null);
+        T item = null;
+        
+        if(index < 0 || index >= count)     //Manejo de Excepciones
+            return item;
+        
+        for(int i = 0 ; i <= index; i++){
+            if(i == 0){
+                temp = startNode;
+            }else{
+                temp = temp.GetNextNode();
+            }
+        }
+
         return temp.GetItem();
+    }
+    
+    @Override
+    public T RemoveObject(){
+        T obj = lastNode.GetItem();
+        
+        List_Node<T> temp = new List_Node<>(null);
+        for(int i=0; i<count-1;i++){
+            if(i == 0){
+                temp = startNode;
+            }else{
+                temp = temp.GetNextNode();
+            }
+        }
+        
+        temp.ChangeNextNode(null);
+        lastNode = temp;
+        count--;
+        
+        return obj;
+    }
+    
+    @Override
+    public T RemoveObject(int index){
+        //   x +
+        //[0 1 2 3]
+        
+        List_Node<T> temp1 = new List_Node<>(null);
+        List_Node<T> temp2 = new List_Node<>(null);
+        T obj = null;
+        
+        if(index == 0){
+            startNode = startNode.GetNextNode();
+        }else{
+            for(int i=0; i<index-1;i++){
+                if(i == 0){
+                    temp1 = startNode;
+                    temp2 = temp1.GetNextNode();
+                }else{
+                    temp1 = temp1.GetNextNode();
+                    temp2 = temp1.GetNextNode();
+                }
+            }
+            obj = temp2.GetItem();
+            temp1.ChangeNextNode(temp2.GetNextNode());
+        }
+        count--;
+        return obj;
+        //nodeToAdd.ChangeNextNode(temp.GetNextNode());
+            //temp.ChangeNextNode(nodeToAdd);
+           // count++;
+        
+    }
+    
+    @Override
+    public int IndexOf(T obj){
+        int result = -1;
+        T compare;
+        
+        List_Node<T> temp1 = new List_Node<>(null);
+        for (int i = 0; i < count ; i++){
+            if(i==0){
+                temp1 = startNode;
+                compare = temp1.GetItem();
+            }else{
+                temp1 = temp1.GetNextNode();
+                compare = temp1.GetItem();
+            }
+            if(compare.equals(obj)){
+                result = i;
+                break;
+            }
+        }
+        
+        return result;
     }
 }

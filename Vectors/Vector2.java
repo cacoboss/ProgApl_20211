@@ -12,6 +12,7 @@ package Vectors;
 public class Vector2 implements Operaciones{
     float x;
     float y;
+    static final float errorMargin = 0.00001f;
     
     public Vector2(float x, float y){
         this.x = x;
@@ -24,18 +25,11 @@ public class Vector2 implements Operaciones{
         return sqrt;
     }
     
-    @Override
-    public String ToString(){
+
+    public String toString(){
         String s;
-        if(this.x == null && this.y == null)
-             return "Vector Vacio";
-        
-        try{
-            s = "Vector x: " + this.x + "y: " + this.y;
-        }catch(NullPointerException ex){
-           
-        }
-        
+        s = "Vector x: " + this.x + "y: " + this.y;
+
         return s;
     }
     
@@ -59,5 +53,13 @@ public class Vector2 implements Operaciones{
         return x/y;
     }
     
+    @Override
+    public boolean equals(Object v2){
+        Vector2 cast = (Vector2) v2;
+        boolean r1 = Math.abs(this.x - cast.x) < errorMargin;
+        boolean r2 = Math.abs(this.y - cast.y) < errorMargin;
+        //return (this.x == v2.x && this.y == v2.y) ? true:false;
+        return (r1 && r2);
+    }
     
 }
